@@ -1,4 +1,4 @@
-/* TA1276AN I2C Bridge
+/* TB1226EN I2C Bridge
  * (2019) Martin Hejnfelt (martin@hejnfelt.com)
  *
  * For use with monitors that use the TB1226EN jungle IC.
@@ -15,6 +15,9 @@
  * 
  * Requires the SoftI2CMaster library
  * https://github.com/felias-fogg/SoftI2CMaster
+ *
+ * Tested on:
+ * JVC TM-A140PN
  */
 
 #define I2C_TIMEOUT 10000
