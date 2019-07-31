@@ -18,6 +18,7 @@
  *
  * Tested on:
  * JVC TM-A140PN
+ * JVC TM-A101G
  */
 
 #define I2C_TIMEOUT 10000
