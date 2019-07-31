@@ -4,21 +4,35 @@
  * For use with monitors that use the TB1226EN jungle IC.
  * This changes the I2C communication from monitor MCUs
  * that doesn't treat RGB like it should, to something
- * that does. Basically it ensures that RGB Contrast is 
+ * that does. The Arduino acts as the jungle, and thus
+ * intercepts and changes the I2C communication from the
+ * MCU. Basically it ensures that RGB Contrast is 
  * in sync with the "other" uni-color contrast value, 
- * plus ensures RGB is not muted. Connect the main I2C 
- * line of the monitors PCB to the hardware I2C (TWI) 
- * pins and then specify the desired secondary I2C pins 
- * for the communication to the jungle.
- * A speedy Arduino is recommended, for now only tested on
- * a 20MHz atmega2560 clone.
+ * plus ensures RGB is not muted.
+ *
+ * Connect the main I2C line of the monitors PCB to 
+ * the hardware I2C (TWI) pins which is usually on 
+ * pin A4 (SDA) and A5 (SCL) and then specify the 
+ * desired secondary I2C bus pins for the communication 
+ * to the jungle. These are by default D4 (SDA) and 
+ * D5 (SDA) which works for ATmega328P based boards.
+ * On the TB1226EN pin 9 is SCL and pin 10 is SDA.
+ * The jungle will need to be isolated, so whatever
+ * resistors are on the I2C line should be removed,
+ * and the freed holes/pads can then be used to inject 
+ * and intercept at.
  * 
+ * A speedy Arduino is recommended, for now tested on:
+ * - 20MHz atmega2560 clone
+ * - 16MHz Nano v3.0 clone
+ * - 16MHz UNO
+ *
  * Requires the SoftI2CMaster library
  * https://github.com/felias-fogg/SoftI2CMaster
  *
  * Tested on:
- * JVC TM-A140PN
- * JVC TM-A101G
+ * JVC TM-A140PN (R291 for SCL, R292 for SDA)
+ * JVC TM-A101G (R291 for SCL, R292 for SDA)
  */
 
 #define I2C_TIMEOUT 10000
